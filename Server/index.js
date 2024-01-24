@@ -140,6 +140,12 @@ app.put('/post',uploadMiddleware.single('file'),async (req,res) => {
     fs.renameSync(path, newPath);
     }
     const {token} = req.cookies;
+    console.log(req.cookies);
+    
+    if(!token) {
+        return res.status(401).json({error:'You are not logged in'});
+    }
+
     jwt.verify(token, secret, {}, async (err,info) => {
         if (err) throw err;
         const {id,title,summary,content} = req.body;
