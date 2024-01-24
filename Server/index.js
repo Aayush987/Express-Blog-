@@ -63,9 +63,10 @@ app.post('/login', async (req,res) => {
             throw err;
         }else {
             console.log(token);
-            res.cookie('token',token).json({
+            res.cookie('token',token,{httpOnly: true, sameSite: "none", secure: true }).json({
                 id: user._id,
                 username,
+                token
             });
         }
       })
