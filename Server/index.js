@@ -16,7 +16,7 @@ const uploadMiddleware = multer({dest: 'uploads/'  })
 const fs = require('fs');
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://express-blog-zeta.vercel.app/',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
