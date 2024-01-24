@@ -14,6 +14,8 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({dest: 'uploads/'  })
 const fs = require('fs');
+const axios = require('axios');
+const cron = require('node-cron');
 
 app.use(cors({
     origin: 'https://express-blog-zeta.vercel.app',
@@ -29,6 +31,18 @@ mongoose.connect(process.env.MONGO_URI);
 const db = mongoose.connection;
 db.on('error',(error)=> console.log(error));
 db.once('open',() => console.log('Connected to database'));
+
+cron.schedule('*/10 * * * *', () => {
+    axios.get('https://blog-application-backend-a9xe.onrender.com/')
+       .then(resonse => {
+         console.log('Server Pinged successfully');
+       })
+       .catch(error => {
+         console.log(error);
+       });
+  })
+
+
 
 
 app.get('/', (req,res) => {
