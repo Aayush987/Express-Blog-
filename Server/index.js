@@ -16,7 +16,9 @@ const uploadMiddleware = multer({dest: 'uploads/'  })
 const fs = require('fs');
 
 app.use(cors({
-    credentials: true,origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
