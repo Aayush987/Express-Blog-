@@ -18,12 +18,11 @@ const PostPage = () => {
             });
     },[])
    if (!postinfo) {
-        return <div>
-            <Skeleton variant="rounded" width={210} height={60} />
-            <Skeleton variant="rounded" width={210} height={60} />
-            <Skeleton variant="rounded" width={210} height={60} />
-            <Skeleton variant="rounded" width={210} height={60} />
-        </div>;
+        return <div className="skeleton">
+            <Skeleton variant="text" sx={{ fontSize: "5rem", width: "960px" }} />
+            <Skeleton variant="rectangular" width={960} height={500} />
+            <Skeleton variant="rounded" width={960} height={500} />
+            </div>;
    }
   return (
     <div className="post-page">

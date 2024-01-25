@@ -1,22 +1,31 @@
+/* eslint-disable react/jsx-key */
 import { useEffect, useState } from "react"
 import Post from "../components/Post"
+import Skeleton from '@mui/material/Skeleton';
 
 const HomePage = () => {
    const [posts,setPosts] = useState([]);
+   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
      fetch("https://blog-application-backend-a9xe.onrender.com/post").then(res => {
       res.json().then(data => {
         setPosts(data);
+        setIsLoading(false);
         });
       });
   },[])
 
   return (
     <>
-   {posts.length > 0 && posts.map(post => (
-    <Post {...post} />
-   ))}
+   {isLoading ? (
+        <div className="skeleton">
+          <Skeleton variant="rectangular" width={960} height={500} />
+          <Skeleton variant="rounded" width={960} height={500} />
+        </div>
+      ) : (
+        posts.length > 0 && posts.map(post => <Post {...post} />)
+      )}
     </>
   )
 }
