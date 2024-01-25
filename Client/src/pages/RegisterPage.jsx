@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+
 const RegisterPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
