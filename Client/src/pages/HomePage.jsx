@@ -20,8 +20,8 @@ const HomePage = () => {
     <>
    {isLoading ? (
         <div className="skeleton">
-          <Skeleton variant="rectangular" width={960} height={500} />
-          <Skeleton variant="rounded" width={960} height={500} />
+          <Skeleton variant="rectangular" width="100%" height={500} />
+          <Skeleton variant="rounded" width="100%" height={500} />
         </div>
       ) : (
         posts.length > 0 && posts.map(post => <Post {...post} />)
