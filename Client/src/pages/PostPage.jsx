@@ -2,6 +2,7 @@ import { formatISO9075 } from "date-fns";
 import { useContext, useEffect, useState } from "react"
 import { useParams,Link } from "react-router-dom"
 import { UserContext } from "../UserContext";
+import Skeleton from '@mui/material/Skeleton';
 
 const PostPage = () => {
     const [postinfo, setPostinfo] = useState(null);
@@ -17,7 +18,12 @@ const PostPage = () => {
             });
     },[])
    if (!postinfo) {
-        return <div>Loading...</div>;
+        return <div>
+            <Skeleton variant="rounded" width={210} height={60} />
+            <Skeleton variant="rounded" width={210} height={60} />
+            <Skeleton variant="rounded" width={210} height={60} />
+            <Skeleton variant="rounded" width={210} height={60} />
+        </div>;
    }
   return (
     <div className="post-page">
