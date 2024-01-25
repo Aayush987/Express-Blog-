@@ -40,7 +40,7 @@ header a {
     border-radius: 20px;
     color: #fff;
 }
-header a:hover {
+header nav a:hover {
   background-color: white;
   color: #333;
   border: 2px solid #333;
@@ -52,6 +52,7 @@ header a.logo {
   background-color: white;
   color: #333;
   font-family: 'Pacifico', cursive;
+  border: none;
 }
 
 header nav {

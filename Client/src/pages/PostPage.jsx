@@ -19,7 +19,7 @@ const PostPage = () => {
     },[])
    if (!postinfo) {
         return <div className="skeleton">
-            <Skeleton variant="text" sx={{ fontSize: "5rem", width: "960px" }} />
+            <Skeleton variant="text" sx={{ fontSize: "5rem", width: "100%" }} />
             <Skeleton variant="rectangular" width="100%" height={500} />
             <Skeleton variant="rounded" width="100%" height={500} />
             </div>;
