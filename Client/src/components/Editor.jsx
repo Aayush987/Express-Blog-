@@ -24,6 +24,9 @@ var toolbarOptions = [
 const module = {
     toolbar: toolbarOptions,
 };
+const formats = [
+      'link','image'
+]
 // const formats = [
 //     'header',
 //     'bold', 'italic', 'underline', 'strike', 'blockquote',
@@ -32,7 +35,7 @@ const module = {
 //   ];
 const Editor = ({value,onChange}) => {
   return (
-    <ReactQuill value = {value} theme={'snow'} onChange={onChange} modules = {module}  />
+    <ReactQuill value = {value} theme={'snow'} onChange={onChange} modules = {module} formats={formats}  />
   )
 }
 
