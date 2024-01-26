@@ -2,7 +2,7 @@ import ReactQuill from "react-quill";
 
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  ['blockquote', 'code-block'],
+  ['blockquote', 'code-block', 'image', 'link'],
 
   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
@@ -24,9 +24,7 @@ var toolbarOptions = [
 const module = {
     toolbar: toolbarOptions,
 };
-const formats = [
-      'link','image'
-]
+
 // const formats = [
 //     'header',
 //     'bold', 'italic', 'underline', 'strike', 'blockquote',
@@ -35,7 +33,7 @@ const formats = [
 //   ];
 const Editor = ({value,onChange}) => {
   return (
-    <ReactQuill value = {value} theme={'snow'} onChange={onChange} modules = {module} formats={formats}  />
+    <ReactQuill value = {value} theme={'snow'} onChange={onChange} modules = {module}  />
   )
 }
 
