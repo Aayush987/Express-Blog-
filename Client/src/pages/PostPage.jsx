@@ -7,16 +7,27 @@ import Skeleton from '@mui/material/Skeleton';
 const PostPage = () => {
     const [postinfo, setPostinfo] = useState(null);
     const {userinfo} = useContext(UserContext);
+    const [cover, setCover] = useState(null);
     const {id} = useParams();
     useEffect(() => {
         console.log(id);
          fetch(`https://blog-server-lake-nine.vercel.app/post/${id}`).then(
             res => {
                res.json().then(postinfo => {
+                // console.log(postinfo);
                   setPostinfo(postinfo);
+                  const extractFirstImage = (data) => {
+                    const match = data.match(/<img[^>]+src="([^">]+)"/i);
+                    return match ? match[1] : null;
+                };
+            
+                const cover = postinfo.content ? extractFirstImage(postinfo.content) : null;
+                // console.log('cover:', cover);
+                setCover(cover);
                });
             });
-    },[])
+    },[]);
+
    if (!postinfo) {
         return <div className="skeleton">
             <Skeleton variant="text" sx={{ fontSize: "5rem", width: "100%" }} />
@@ -40,7 +51,7 @@ const PostPage = () => {
             </div>
         )}
         <div className="image">
-       <img src= {`https://blog-server-lake-nine.vercel.app/${postinfo.cover}`} alt="coverphoto"  />
+       <img src= {cover} alt="coverphoto"  />
         </div>
         <div className="content" dangerouslySetInnerHTML={{__html: postinfo.content}} />
     </div>
