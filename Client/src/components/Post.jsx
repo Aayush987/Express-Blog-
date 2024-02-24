@@ -1,12 +1,36 @@
 import {formatISO9075} from "date-fns";
 import { Link } from "react-router-dom";
+// import { JSDOM } from 'jsdom';
+import { useEffect, useState } from "react";
 
-const Post = ({_id,title, summary, cover, content, createdAt, author}) => {
+const Post = ({_id,title, summary, content, createdAt, author}) => {
+  const [postinfo, setPostinfo] = useState(null);
+  const [cover, setCover] = useState(null);
+
+  useEffect(() => {
+    // console.log(id);
+    fetch(`https://blog-server-lake-nine.vercel.app/post/${_id}`)
+      .then(res => res.json())
+      .then(postinfo => {
+        setPostinfo(postinfo);
+
+        const extractFirstImage = (content) => {
+          const match = content.match(/<img[^>]+src="([^">]+)"/i);
+          return match ? match[1] : null;
+        };
+
+        const cover = extractFirstImage(postinfo.content);
+        // console.log(cover);
+        setCover(cover);
+      });
+  }, []);
+
   return (
     <div className="post">
       <div className="image">
       <Link to = {`/post/${_id}`}>
-      <img src={'https://blog-server-lake-nine.vercel.app/'+cover} alt='image' />
+      <img src={cover} alt='image' />
+      {/* <img src={'https://blog-server-lake-nine.vercel.app/'+cover} alt='image' /> */}
       </Link>
       </div>
       <div className="content">
