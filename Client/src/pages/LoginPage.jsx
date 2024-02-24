@@ -10,7 +10,7 @@ const LoginPage = () => {
   
   const login = async (e) => {
     e.preventDefault();
-   const response = await fetch('https://blog-application-backend-a9xe.onrender.com/login', {
+   const response = await fetch('https://blog-server-lake-nine.vercel.app/login', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({username,password}),

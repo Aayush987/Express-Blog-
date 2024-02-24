@@ -12,7 +12,7 @@ const EditPost = () => {
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-        fetch('https://blog-application-backend-a9xe.onrender.com/post/'+id).then(res => {
+        fetch('https://blog-server-lake-nine.vercel.app/post/'+id).then(res => {
             res.json().then(postinfo => {
                 setTitle(postinfo.title);
                 setSummary(postinfo.summary);
@@ -31,7 +31,7 @@ const EditPost = () => {
          if(files?.[0]) {
             data.set('file',files?.[0]);
          }
-  const response = await fetch('https://blog-application-backend-a9xe.onrender.com/post', {
+  const response = await fetch('https://blog-server-lake-nine.vercel.app/post', {
         method: 'PUT',
         body: data, 
         credentials: 'include',

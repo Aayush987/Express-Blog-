@@ -8,7 +8,7 @@ const HomePage = () => {
    const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-     fetch("https://blog-application-backend-a9xe.onrender.com/post").then(res => {
+     fetch("https://blog-server-lake-nine.vercel.app/post").then(res => {
       res.json().then(data => {
         setPosts(data);
         setIsLoading(false);

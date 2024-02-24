@@ -10,7 +10,7 @@ const PostPage = () => {
     const {id} = useParams();
     useEffect(() => {
         console.log(id);
-         fetch(`https://blog-application-backend-a9xe.onrender.com/post/${id}`).then(
+         fetch(`https://blog-server-lake-nine.vercel.app/post/${id}`).then(
             res => {
                res.json().then(postinfo => {
                   setPostinfo(postinfo);
@@ -40,7 +40,7 @@ const PostPage = () => {
             </div>
         )}
         <div className="image">
-       <img src= {`https://blog-application-backend-a9xe.onrender.com/${postinfo.cover}`} alt="coverphoto"  />
+       <img src= {`https://blog-server-lake-nine.vercel.app/${postinfo.cover}`} alt="coverphoto"  />
         </div>
         <div className="content" dangerouslySetInnerHTML={{__html: postinfo.content}} />
     </div>

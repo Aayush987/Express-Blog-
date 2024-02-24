@@ -7,7 +7,7 @@ const Header = () => {
     const {setUserinfo, userinfo} = useContext(UserContext);
  
    useEffect(() => {
-      fetch('https://blog-application-backend-a9xe.onrender.com/profile', {
+      fetch('https://blog-server-lake-nine.vercel.app/profile', {
         credentials: 'include'      
       }).then(res => {
         res.json().then(userinfo => {
@@ -17,7 +17,7 @@ const Header = () => {
    },[])
 
   const logout = () => {
-    fetch('https://blog-application-backend-a9xe.onrender.com/logout', {
+    fetch('https://blog-server-lake-nine.vercel.app/logout', {
       credentials: 'include',
       method: 'POST'
     }).then(() => {

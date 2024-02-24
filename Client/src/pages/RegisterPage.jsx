@@ -7,7 +7,7 @@ const RegisterPage = () => {
  
 const register = async (e) => {
     e.preventDefault();
-   const response = await fetch('https://blog-application-backend-a9xe.onrender.com/register', {
+   const response = await fetch('https://blog-server-lake-nine.vercel.app/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username,password})
