@@ -29,7 +29,7 @@ const Post = ({_id,title, summary, content, createdAt, author}) => {
     <div className="post">
       <div className="image">
       <Link to = {`/post/${_id}`}>
-      <img src={cover} alt='image' />
+      <img src={cover ? cover : 'https://via.placeholder.com/400'} alt='image' />
       {/* <img src={'https://blog-server-lake-nine.vercel.app/'+cover} alt='image' /> */}
       </Link>
       </div>
