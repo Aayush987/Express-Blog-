@@ -2,6 +2,7 @@ import { formatISO9075 } from "date-fns";
 import { useContext, useEffect, useState } from "react"
 import { useParams,Link } from "react-router-dom"
 import { UserContext } from "../UserContext";
+import CommentsSection from "../components/CommentsSection";
 import Skeleton from '@mui/material/Skeleton';
 
 const PostPage = () => {
@@ -9,9 +10,11 @@ const PostPage = () => {
     const {userinfo} = useContext(UserContext);
     const [cover, setCover] = useState(null);
     const {id} = useParams();
+    const url = 'https://blog-server-lake-nine.vercel.app';
+    // const url2 = 'http://localhost:4000';
     useEffect(() => {
         console.log(id);
-         fetch(`https://blog-server-lake-nine.vercel.app/post/${id}`).then(
+         fetch(`${url}/post/${id}`).then(
             res => {
                res.json().then(postinfo => {
                 // console.log(postinfo);
@@ -54,6 +57,7 @@ const PostPage = () => {
        <img src= {cover} alt="coverphoto"  />
         </div>
         <div className="content" dangerouslySetInnerHTML={{__html: postinfo.content}} />
+        <CommentsSection postId = {id} />
     </div>
   )
 }

@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const User = require('./models/User');
 const Post = require('./models/Post');
+const Comment = require('./models/Comment');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 const secret = 'aswu352tgwefwfw'
@@ -20,6 +21,7 @@ const cron = require('node-cron');
 app.use(cors({
     // origin: 'http://localhost:5173',
     origin: 'https://express-blog-zeta.vercel.app',
+    // origin: '*',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
@@ -116,12 +118,12 @@ app.post('/post', async (req, res) => {
             return;
         }
 
-        console.log(info.id);
+        // console.log(info.id);
 
         const { title, summary, content } = req.body;
-        console.log(title);
-        console.log(summary);
-        console.log(content);
+        // console.log(title);
+        // console.log(summary);
+        // console.log(content);
 
         try {
             const PostDoc = await Post.create({
@@ -149,14 +151,24 @@ app.get('/post', async (req,res) => {
 
 app.get('/post/:id', async (req,res) => {
     const {id} = req.params;
-   const PostDoc = await Post.findById(id).populate('author', ['username']);
-   console.log(PostDoc);
-   res.json(PostDoc);
+    try {
+        const PostDoc = await Post.findById(id)
+        .populate('author', ['username'])
+        .populate({
+            path: 'comments',
+            populate: {path: 'author', select: 'username'}
+        });
+        // console.log(PostDoc);
+        res.json(PostDoc);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: 'Failed to get post'});
+    }
 })
 
 app.put('/post', async (req,res) => {
     const {token} = req.cookies;
-    console.log(req.cookies);
+    // console.log(req.cookies);
     
     if(!token) {
         return res.status(401).json({error:'You are not logged in'});
@@ -191,6 +203,39 @@ app.put('/post', async (req,res) => {
     })
 
 })
+
+app.post('/post/:id/comment', async (req,res) => {
+    console.log("Here is the comment");
+    const { token } = req.cookies;
+    if(!token) {
+        return res.status(401).json({error:'You are not logged in'});
+    }
+    console.log(token);
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if(err) {
+            console.log(err);
+            throw err;
+        }
+        const { content } = req.body;
+        const { id } = req.params;
+        try {
+            const commentDoc = await Comment.create({
+                content,
+                author: info.id,
+                post: id,
+            });
+
+            await Post.findByIdAndUpdate(id, { $push: { comments: commentDoc._id } });
+            
+            res.status(201).json({
+                message: 'Comment added Successfully'
+            })
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({error: 'Failed to add comment'});
+        }
+    });
+});
 
 
 

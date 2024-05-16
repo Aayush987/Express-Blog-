@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 const Post = ({_id,title, summary, content, createdAt, author}) => {
   const [postinfo, setPostinfo] = useState(null);
   const [cover, setCover] = useState(null);
+  const url = 'https://blog-server-lake-nine.vercel.app';
+  // const url2 = 'http://localhost:4000';
 
   useEffect(() => {
     // console.log(id);
-    fetch(`https://blog-server-lake-nine.vercel.app/post/${_id}`)
+    fetch(`${url}/post/${_id}`)
       .then(res => res.json())
       .then(postinfo => {
         setPostinfo(postinfo);

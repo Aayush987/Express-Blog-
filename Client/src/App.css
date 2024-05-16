@@ -82,6 +82,9 @@ header nav {
   header nav {
     flex-direction: row;
   }
+  .comments-input textarea {
+    height: 80px;
+  }
   
 }
 
@@ -208,4 +211,57 @@ form.login .register h1 {
 }
 a svg {
   height: 20px;
+}
+.comments-section {
+  margin-top: 20px;
+}
+
+.comments-input {
+  margin-bottom: 20px;
+}
+
+.comments-input textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comments-list {
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 0 3px;
+}
+
+.comment p {
+  font-weight: 800;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
+.comment-content p {
+  margin-bottom: 5px;;
+}
+
+.comment-header {
+  display: flex;
+  align-items: flex-end; 
+  margin-bottom: 5px;
+}
+
+.comment-author p {
+  font-weight: 400;
+  margin-right: 10px;
+}
+
+.comment-time p {
+  margin-bottom: 20px;
+  color: #606060; 
 }

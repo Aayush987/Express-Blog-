@@ -6,9 +6,11 @@ import Skeleton from '@mui/material/Skeleton';
 const HomePage = () => {
    const [posts,setPosts] = useState([]);
    const [isLoading, setIsLoading] = useState(true);
+   const url = 'https://blog-server-lake-nine.vercel.app';
+  //  const url2 = 'http://localhost:4000';
 
   useEffect(() => {
-     fetch("https://blog-server-lake-nine.vercel.app/post").then(res => {
+     fetch(`${url}/post`).then(res => {
       res.json().then(data => {
         setPosts(data);
         setIsLoading(false);
