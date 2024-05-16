@@ -4,10 +4,12 @@ import { UserContext} from '../UserContext'
 
 
 const Header = () => {
+  const url = 'https://blog-server-lake-nine.vercel.app';
+  // const url2 = 'http://localhost:4000';
     const {setUserinfo, userinfo} = useContext(UserContext);
  
    useEffect(() => {
-      fetch('https://blog-server-lake-nine.vercel.app/profile', {
+      fetch(`${url}/profile`, {
         credentials: 'include'      
       }).then(res => {
         res.json().then(userinfo => {
@@ -17,7 +19,7 @@ const Header = () => {
    },[])
 
   const logout = () => {
-    fetch('https://blog-server-lake-nine.vercel.app/logout', {
+    fetch(`${url}/logout`, {
       credentials: 'include',
       method: 'POST'
     }).then(() => {

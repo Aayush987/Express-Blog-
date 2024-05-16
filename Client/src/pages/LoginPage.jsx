@@ -7,10 +7,12 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
   const {setUserinfo} = useContext(UserContext);
+  const url = 'https://blog-server-lake-nine.vercel.app';
+  // const url2 = 'http://localhost:4000';
   
   const login = async (e) => {
     e.preventDefault();
-   const response = await fetch('https://blog-server-lake-nine.vercel.app/login', {
+   const response = await fetch(`${url}/login`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({username,password}),
