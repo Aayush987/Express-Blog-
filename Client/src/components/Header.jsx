@@ -9,23 +9,29 @@ const Header = () => {
     const {setUserinfo, userinfo} = useContext(UserContext);
  
    useEffect(() => {
-      fetch(`${url}/profile`, {
-        credentials: 'include'      
-      }).then(res => {
-        res.json().then(userinfo => {
-          setUserinfo(userinfo);
-        });
-      });
-   },[])
+    fetch(`${url}/profile`, {
+      credentials: 'include'
+  }).then(res => {
+      if (res.ok) {
+          res.json().then(userinfo => {
+              setUserinfo(userinfo);
+          });
+      } else {
+          setUserinfo(null); 
+      }
+  });
+}, [setUserinfo]);
 
-  const logout = () => {
-    fetch(`${url}/logout`, {
+const logout = () => {
+  fetch(`${url}/logout`, {
       credentials: 'include',
       method: 'POST'
-    }).then(() => {
-      setUserinfo(null);
-    });
-  }
+  }).then(res => {
+      if (res.ok) {
+          setUserinfo(null);
+      }
+  });
+}
 
 const username = userinfo?.username;
 
