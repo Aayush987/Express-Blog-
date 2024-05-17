@@ -98,14 +98,19 @@ app.post('/login', async (req,res) => {
 
 app.get('/profile', (req,res) => {
     const {token} = req.cookies;
+    if (!token) {
+        return res.status(401).json({ error: 'Not authenticated' });
+    }
     jwt.verify(token, secret, {}, (err,info) => {
-        if (err) throw err;
+        if (err) {
+            return res.status(401).json({ error: 'Invalid token' });
+        }
         res.json(info);
-    })
-})
+    });
+});
 
 app.post('/logout', (req,res) => {
-    res.cookie('token', '').json('ok');
+    res.clearCookie('token').status(200).json({ message: 'Logged out successfully' });
 })
 
 app.post('/post', async (req, res) => {
