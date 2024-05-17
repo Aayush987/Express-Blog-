@@ -6,6 +6,7 @@ const CommentsSection = ({ postId }) => {
    const [comments, setComments] = useState([]);
     const {userinfo} = useContext(UserContext);
     const [newComment,setNewComment] = useState(''); 
+    const username = userinfo?.username;
     const url = 'https://blog-server-lake-nine.vercel.app';
     // const url2 = 'http://localhost:4000';
 
@@ -46,7 +47,7 @@ const CommentsSection = ({ postId }) => {
   return (
     <div className="comments-section">
         <h2>Comments</h2>
-        {userinfo && (
+        {username && (
             <div className="comments-input">
                  <textarea 
                     rows = "4"
@@ -57,7 +58,7 @@ const CommentsSection = ({ postId }) => {
                  <button className="button" onClick={addComment}>Post Comment</button>
             </div>
         )} 
-        {!userinfo && (
+        {!username && (
             <p>Please log in to add a comment.</p>
         )}
         <div className="comments-list">
