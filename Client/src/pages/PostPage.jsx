@@ -4,6 +4,7 @@ import { useParams,Link } from "react-router-dom"
 import { UserContext } from "../UserContext";
 import CommentsSection from "../components/CommentsSection";
 import Skeleton from '@mui/material/Skeleton';
+import { Helmet } from 'react-helmet';
 
 const PostPage = () => {
     const [postinfo, setPostinfo] = useState(null);
@@ -40,6 +41,13 @@ const PostPage = () => {
    }
   return (
     <div className="post-page">
+       <Helmet>
+          <title>{postinfo.title}</title>
+          <meta property="og:title" content={postinfo.title} />
+          <meta property="og:image" content={cover} />
+          <meta property="og:url" content={`https://express-blog-zeta.vercel.app/post/${id}`} />
+          <meta property="og:type" content= "article" />
+       </Helmet>
         <h1>{postinfo.title}</h1>
         <time>{formatISO9075(new Date(postinfo.createdAt))}</time>
         <div className="author">by @{postinfo.author.username}</div>
