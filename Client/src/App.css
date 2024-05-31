@@ -61,6 +61,18 @@ header nav {
   gap: 15px;
 }
 
+.divider {
+  margin: 106px 0 0 0;
+  height: 1.333px;
+  width: 100%;
+  background: rgba(40, 41, 56, 0.55);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .post {
     display: grid;
     grid-template-columns: 1fr;
@@ -72,6 +84,10 @@ header nav {
 @media screen and (min-width: 700px) {
   .post {
     grid-template-columns: 0.9fr 1.1fr;
+  }
+  footer {
+    display: flex;
+    flex-direction: space-around;
   }
   header a {
     padding: 10px 30px;
