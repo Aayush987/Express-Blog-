@@ -1,18 +1,19 @@
 import { useState, useContext, useEffect } from "react"
 import { UserContext } from "../UserContext";
 import {formatDistanceToNow} from "date-fns";
+import { FaUser } from "react-icons/fa";
 
 const CommentsSection = ({ postId }) => {
    const [comments, setComments] = useState([]);
     const {userinfo} = useContext(UserContext);
     const [newComment,setNewComment] = useState(''); 
     const username = userinfo?.username;
-    const url = 'https://blog-server-lake-nine.vercel.app';
-    // const url2 = 'http://localhost:4000';
+    const url = 'https://blog-server-lake-nine.vercel.app/api';
+    // const url2 = 'http://localhost:4000/api';
 
   const fetchComments = async () => {
     try {
-        const response = await fetch(`${url}/post/${postId}`);
+        const response = await fetch(`${url}/posts/post/${postId}`);
         const postData = await response.json();
         setComments(postData.comments);
     } catch (error) {
@@ -46,17 +47,18 @@ const CommentsSection = ({ postId }) => {
 
   return (
     <div className="comments-section">
-        <h2>Comments</h2>
+        <h2 className="comments-title">Comments</h2>
         {username && (
-            <div className="comments-input">
+            <form className="comment-form">
                  <textarea 
+                    className="comment-input"
                     rows = "4"
                     placeholder="Add a comment..."
                     value={newComment}
                     onChange = {(e) => setNewComment(e.target.value)}
                     />
-                 <button className="button" onClick={addComment}>Post Comment</button>
-            </div>
+                 <button className="submit-comment" onClick={addComment}>Post Comment</button>
+            </form>
         )} 
         {!username && (
             <p>Please log in to add a comment.</p>
@@ -64,14 +66,13 @@ const CommentsSection = ({ postId }) => {
         <div className="comments-list">
             {comments.map((comment) => (
                <div key={comment._id} className="comment">
-                <div className="comment-header">
-                    <div className="comment-author">
-                       <p>@{comment.author.username}</p>
+                <header className="comment-header">
+                    <FaUser size={1} className="avatar" />
+                    <div className="comment-meta">
+                       <span className="comment-author">{comment.author.username}</span>
+                       <time className="comment-date">{formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}</time>
                     </div>
-                    <div className="comment-time">
-                       <time>{formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}</time>
-                    </div>
-                </div>
+                </header>
                 <p>{comment.content}</p>
                 </div>
             ))}

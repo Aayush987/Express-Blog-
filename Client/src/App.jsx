@@ -8,6 +8,7 @@ import { UserContextProvider } from './UserContext'
 import CreatePost from "./pages/CreatePost"
 import PostPage from "./pages/PostPage"
 import EditPost from "./pages/EditPost"
+import AuthorProfilePage from './pages/AuthorProfilePage'
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
         <Route path = "/create" element = {<CreatePost />} />
         <Route path = "/post/:id" element = {<PostPage />} />
         <Route path = "/edit/:id" element = {<EditPost />} />
+        <Route path = "/author/:name" element = {<AuthorProfilePage />} />
       </Route>
     </Routes>
     </UserContextProvider>

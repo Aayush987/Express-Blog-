@@ -4,8 +4,8 @@ import { UserContext} from '../UserContext'
 
 
 const Header = () => {
-  const url = 'https://blog-server-lake-nine.vercel.app';
-  // const url2 = 'http://localhost:4000';
+  const url = 'https://blog-server-lake-nine.vercel.app/api/auth';
+  // const url2 = 'http://localhost:4000/api/auth';
     const {setUserinfo, userinfo} = useContext(UserContext);
  
    useEffect(() => {
