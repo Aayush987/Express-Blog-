@@ -9,11 +9,13 @@ import CreatePost from "./pages/CreatePost"
 import PostPage from "./pages/PostPage"
 import EditPost from "./pages/EditPost"
 import AuthorProfilePage from './pages/AuthorProfilePage'
+import { HelmetProvider } from 'react-helmet-async'
 
 function App() {
   
   return (
     <>
+    <HelmetProvider>
     <UserContextProvider>
     <Routes>
       <Route path = "/" element = {<Layout />}>
@@ -27,6 +29,7 @@ function App() {
       </Route>
     </Routes>
     </UserContextProvider>
+    </HelmetProvider>
     </>
   )
 }

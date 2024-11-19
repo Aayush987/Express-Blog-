@@ -5,7 +5,7 @@ import { UserContext } from "../UserContext";
 import CommentsSection from "../components/CommentsSection";
 import Skeleton from '@mui/material/Skeleton';
 import { FaUser } from "react-icons/fa";
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import SuggestedPosts from "../components/SuggestedPosts";
 import Express_Blog_Cover from "../assets/Express_Blog_Cover.jpg";
 
@@ -51,7 +51,7 @@ const PostPage = () => {
           <meta property="og:description" content={postinfo.summary} />
           <meta property="og:image" content={Express_Blog_Cover} />
           <meta property="og:url" content={`https://express-blog-zeta.vercel.app/post/${id}`} />
-          <meta property="og:type" content= "article" />
+          <meta property="og:type" content= "website" />
 
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={postinfo.title} />
