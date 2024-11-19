@@ -91,7 +91,7 @@ const HomePage = () => {
     
     const handleSearch = async () => {
       try {
-        const response = await fetch(`${url2}/posts/SearchPost?q=${searchText}`);
+        const response = await fetch(`${url}/posts/SearchPost?q=${searchText}`);
         const data = await response.json();
         console.log(data);
         setFilteredPosts(data);
