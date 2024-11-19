@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 const Post = ({_id,title, summary, content, createdAt, author}) => {
   const [postinfo, setPostinfo] = useState(null);
   const [cover, setCover] = useState(null);
-  const url = 'https://blog-server-lake-nine.vercel.app';
-  // const url2 = 'http://localhost:4000';
+  const url = 'https://blog-server-lake-nine.vercel.app/api';
+  // const url2 = 'http://localhost:4000/api';
 
   useEffect(() => {
     // console.log(id);
-    fetch(`${url}/post/${_id}`)
+    fetch(`${url}/posts/post/${_id}`)
       .then(res => res.json())
       .then(postinfo => {
         setPostinfo(postinfo);
@@ -40,7 +40,7 @@ const Post = ({_id,title, summary, content, createdAt, author}) => {
       <h2>{title}</h2>
       </Link>
       <p className="info">
-        <a href="" className="author">{author.username}</a>
+        <Link to = {`/author/${author.username}`} className="author">{author?.username}</Link>
         <time>{formatISO9075(new Date(createdAt))}</time>
       </p>
       <p className='summary'>{summary}</p>

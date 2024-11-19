@@ -10,9 +10,11 @@ const EditPost = () => {
     const [content, setContent] = useState('');
     // const [files,setFiles] = useState('');
     const [redirect, setRedirect] = useState(false);
+      const url = 'https://blog-server-lake-nine.vercel.app/api';
+  // const url2 = 'http://localhost:4000/api';
 
     useEffect(() => {
-        fetch('https://blog-server-lake-nine.vercel.app/post/'+id).then(res => {
+        fetch(`${url}/posts/post/`+id).then(res => {
             res.json().then(postinfo => {
                 setTitle(postinfo.title);
                 setSummary(postinfo.summary);
@@ -31,12 +33,13 @@ const EditPost = () => {
         //  if(files?.[0]) {
         //     data.set('file',files?.[0]);
         //  }
-  const response = await fetch('https://blog-server-lake-nine.vercel.app/post', {
+  const response = await fetch(`${url}/posts/post`, {
         method: 'PUT',
         body: data, 
         credentials: 'include',
        });
        if(response.ok) {
+        console.log('Post Updated');
          setRedirect(true);
        }
   }

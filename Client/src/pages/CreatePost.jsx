@@ -10,8 +10,8 @@ const CreatePost = () => {
     const [content, setContent] = useState('');
     // const [files,setFiles] = useState('');
     const [redirect, setRedirect] = useState(false);
-    const url = 'https://blog-server-lake-nine.vercel.app';
-    // const url2 = 'http://localhost:4000';
+    const url = 'https://blog-server-lake-nine.vercel.app/api';
+    // const url2 = 'http://localhost:4000/api';
 
  const createNewPost = async (e) => {
     const data = new FormData();
@@ -21,7 +21,7 @@ const CreatePost = () => {
     // data.set('file',files[0]);
 
     e.preventDefault();
- const response  = await fetch(`${url}/post`, {
+ const response  = await fetch(`${url}/posts/post`, {
         method: 'POST',
         body: data,
         credentials: 'include'
