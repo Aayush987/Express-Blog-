@@ -30,7 +30,7 @@ app.use(upload.array());
 connectDB();
 
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.send('Hello World v2');
 });
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/posts', require('./routes/postRoutes'));
