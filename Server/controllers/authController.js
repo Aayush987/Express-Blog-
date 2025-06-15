@@ -55,7 +55,11 @@ exports.profile = (req, res) => {
 
 
 exports.logout = (req, res) => {
-    res.clearCookie('token').status(200).json({message: 'Logged out successfully'});
+    res.clearCookie('token', {
+     httpOnly: true,
+     sameSite: 'none',
+     secure: true
+   }).status(200).json({message: 'Logged out successfully'});
 }
 
 exports.getAuthorProfile = async (req, res) => {
